@@ -23,11 +23,9 @@ func main() {
 		num, _ := strconv.Atoi(line[1])
 		numbers = append(numbers, num)
 	}
-	for {
-		prev := scanner.Text()
-		scanner.Scan()
+	for scanner.Scan() {
 		text := scanner.Text()
-		if text == prev || len(text) == 0 {
+		if len(text) == 0 {
 			break
 		}
 		exists := false
