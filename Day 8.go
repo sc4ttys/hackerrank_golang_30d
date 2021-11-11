@@ -14,30 +14,26 @@ func main() {
 
 	scanner.Scan()
 	n, _ := strconv.Atoi(scanner.Text())
-	var names []string
-	var numbers []int
+	m := make(map[string]int)
 	for i := 0; i < n; i++ {
 		scanner.Scan()
 		line := strings.Fields(scanner.Text())
-		names = append(names, line[0])
+		name := line[0]
 		num, _ := strconv.Atoi(line[1])
-		numbers = append(numbers, num)
+		m[name] = num
 	}
 	for scanner.Scan() {
 		text := scanner.Text()
 		if len(text) == 0 {
 			break
 		}
-		exists := false
-		for i := range names {
-			if text == names[i] {
-				fmt.Println(names[i] + "=" + strconv.Itoa(numbers[i]))
-				exists = true
-			}
-		}
+		_, exists := m[text]
 		if !exists {
 			fmt.Println("Not found")
+		} else {
+			fmt.Println(text + "=" + strconv.Itoa(m[text]))
 		}
+
 	}
 
 }
